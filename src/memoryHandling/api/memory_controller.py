@@ -1,6 +1,5 @@
 from src.memoryHandling.app.services.process.process_list_service import ProcessListService
 from src.memoryHandling.app.dtos.memory_file_dto import *
-from src.memoryHandling.app.models.process import ProcessList
 from src.memoryHandling.injector.process_dependencies import get_process_service
 from fastapi import APIRouter, Depends
 
