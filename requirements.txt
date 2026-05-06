@@ -1,5 +1,6 @@
 fastapi[standard]
-motor
-beanie
-pydantic-settings # for using .env
+pymongo
 volatility3
+pydantic
+python-dotenv # for using .env
+pydantic-settings

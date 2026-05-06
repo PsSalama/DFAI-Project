@@ -1,4 +1,4 @@
 from pydantic import BaseModel
 
-class memory_file_path(BaseModel):
+class MemoryFilePath(BaseModel):
     file_path:str

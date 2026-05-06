@@ -1,23 +1,22 @@
 from abc import ABC, abstractmethod
-from src.memoryHandling.app.models.Process import Process
 
 class IProcessRepo(ABC):
     @abstractmethod
-    def process_list(self, ) -> list[Process]:
+    def store_process_list(self, process_list: list[dict]):
         pass
 
     @abstractmethod
-    def process_tree(self, file_path:str ) -> list[Process]:
+    def store_process_tree(self, process_tree: list[dict]):
         pass
 
     @abstractmethod
-    def process_hidden(self, file_path:str) -> list[Process]:
+    def store_process_hidden(self, process_hidden: list[dict]):
         pass
 
     @abstractmethod
-    def process_command_line(self, file_path:str) -> list[Process]:
+    def store_process_command_line(self, process_command_line: list[dict]):
         pass
 
     @abstractmethod
-    def process_environment_vars(self, file_path:str) -> list[Process]:
+    def store_process_environment_vars(self, process_environment_vars: list[dict]):
         pass

@@ -1,10 +1,11 @@
-from fastapi import FastAPI
-from src.memoryHandling.app.services.process.ProcessList import ProcessListService
-from src.memoryHandling.app.ports.volatility.IProcesses import IProcesses
+from src.memoryHandling.app.services.process.process_list_service import ProcessListService
+from src.memoryHandling.app.dtos.memory_file_dto import *
+from src.memoryHandling.app.models.process import ProcessList
+from src.memoryHandling.injector.process_dependencies import get_process_service
+from fastapi import APIRouter, Depends
 
-app = FastAPI()
+router = APIRouter()
 
-@app.post("/memory_path")
-def file_path(memory_dump_file_path:str):
-    process_list_service = ProcessListService(IProcesses)
-    return new_process_list
+@router.post("/memory_file")
+def memory_file(file_path: MemoryFilePath, process_list_service: ProcessListService = Depends(get_process_service)):
+    process_list_service.process_handling(file_path.file_path)
