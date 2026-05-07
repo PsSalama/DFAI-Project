@@ -1,6 +1,7 @@
 
 class ProcessListMapperToDict:
-    def vol_to_dict(self, raw_data: dict) -> dict:
+    @staticmethod
+    def vol_to_dict(raw_data: dict) -> dict:
         return {
             "pid": raw_data.get("PID"),
             "ppid": raw_data.get("PPID"),
@@ -16,7 +17,8 @@ class ProcessListMapperToDict:
         }
 
 class ProcessTreeMapperToDict:
-    def vol_to_dict(self, raw_data: dict) -> dict:
+    @staticmethod
+    def vol_to_dict(raw_data: dict) -> dict:
         return {
             "pid": raw_data.get("PID"),
             "ppid": raw_data.get("PPID"),
@@ -33,7 +35,8 @@ class ProcessTreeMapperToDict:
 
 
 class ProcessHiddenMapperToDict:
-    def vol_to_dict(self, raw_data: dict) -> dict:
+    @staticmethod
+    def vol_to_dict(raw_data: dict) -> dict:
         return {
             "pid": raw_data.get("PID"),
             "ppid": raw_data.get("PPID"),
@@ -49,7 +52,8 @@ class ProcessHiddenMapperToDict:
         }
 
 class ProcessCommandLineMapperToDict:
-    def vol_to_dict(self, raw_data: dict) -> dict:
+    @staticmethod
+    def vol_to_dict(raw_data: dict) -> dict:
         return {
             "pid": raw_data.get("PID"),
             "ppid": raw_data.get("PPID"),
@@ -60,7 +64,8 @@ class ProcessCommandLineMapperToDict:
 
 
 class ProcessEnvironmentVarsMapperToDict:
-    def vol_to_dict(self, raw_data: dict) -> dict:
+    @staticmethod
+    def vol_to_dict(raw_data: dict) -> dict:
         return {
             "pid": raw_data.get("PID"),
             "process": raw_data.get("Process"),

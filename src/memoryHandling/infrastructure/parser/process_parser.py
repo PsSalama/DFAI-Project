@@ -2,7 +2,8 @@ import re
 from src.memoryHandling.infrastructure.mappers.process_mapper_vol_dict import *
 
 class ProcessListParser:
-    def parse_pslist(self, file_path: str) -> list[dict]:
+    @staticmethod
+    def parse_process_list(file_path: str) -> list[dict]:
         with open(file_path, "r", encoding="utf-8") as f:
             lines = [l.strip() for l in f.readlines() if l.strip()]
 
@@ -17,14 +18,12 @@ class ProcessListParser:
 
         header_line = lines[header_index]
         headers = re.split(r"\t+", header_line)
-        mapper = ProcessListMapperToDict()
         data = []
         for line in lines[header_index + 1:]:
             values = re.split(r"\t+", line)
             if len(values) != len(headers):
                 continue
             row = dict(zip(headers, values))
-            print(row.get("File output"))
-            mapped_row = mapper.vol_to_dict(row)
+            mapped_row = ProcessListMapperToDict.vol_to_dict(row)
             data.append(mapped_row)
         return data

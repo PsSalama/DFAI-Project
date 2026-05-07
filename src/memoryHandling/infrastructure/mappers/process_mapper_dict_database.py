@@ -6,7 +6,8 @@ from src.memoryHandling.infrastructure.models.process.process_command_line_model
 
 
 class ProcessListMapperToDatabaseModel:
-    def dict_to_database(self, raw_data: dict) -> ProcessListModel:
+    @staticmethod
+    def dict_to_database(raw_data: dict) -> ProcessListModel:
         return ProcessListModel(
             pid = str(raw_data.get("pid", "")),
             ppid = str(raw_data.get("ppid", "")),
@@ -23,7 +24,8 @@ class ProcessListMapperToDatabaseModel:
 
 
 class ProcessTreeMapperToDatabaseModel:
-    def dict_to_database(self, raw_data: dict) -> ProcessTreeModel:
+    @staticmethod
+    def dict_to_database(raw_data: dict) -> ProcessTreeModel:
         return ProcessTreeModel(
             pid = str(raw_data.get("pid", "")),
             ppid = str(raw_data.get("ppid", "")),
@@ -40,7 +42,8 @@ class ProcessTreeMapperToDatabaseModel:
 
 
 class ProcessHiddenMapperToDatabaseModel:
-    def dict_to_database(self, raw_data: dict) -> ProcessHiddenModel:
+    @staticmethod
+    def dict_to_database(raw_data: dict) -> ProcessHiddenModel:
         return ProcessHiddenModel(
             pid = str(raw_data.get("pid", "")),
             ppid = str(raw_data.get("ppid", "")),
@@ -57,7 +60,8 @@ class ProcessHiddenMapperToDatabaseModel:
 
 
 class ProcessCommandLineMapperToDatabaseModel:
-    def dict_to_database(self, raw_data: dict) -> ProcessCommandLineModel:
+    @staticmethod
+    def dict_to_database(raw_data: dict) -> ProcessCommandLineModel:
         return ProcessCommandLineModel(
             pid = str(raw_data.get("pid","")),
             process = str(raw_data.get("ppid", "")),
@@ -66,7 +70,8 @@ class ProcessCommandLineMapperToDatabaseModel:
 
 
 class ProcessEnvironmentVarsMapperToDatabaseModel:
-    def dict_to_database(self, raw_data: dict) -> ProcessEnvironmentVarsModel:
+    @staticmethod
+    def dict_to_database(raw_data: dict) -> ProcessEnvironmentVarsModel:
         return ProcessEnvironmentVarsModel(
             pid = str(raw_data.get("pid", "")),
             process = str(raw_data.get("ppid", "")),

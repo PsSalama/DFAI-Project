@@ -6,13 +6,14 @@ from src.memoryHandling.infrastructure.adapters.repositories.imp_process_repo im
 from src.memoryHandling.app.ports.volatility.i_process_vol import IProcessVol
 from src.memoryHandling.app.services.process.process_list_service import ProcessListService
 
-def get_process_vol() -> IProcessVol:
+
+def inject_process_vol() -> IProcessVol:
     return ImpProcesses()
 
-def get_process_repo() -> IProcessRepo:
+def inject_process_repo() -> IProcessRepo:
     return ImpProcessRepo()
 
-def get_process_service(processes: IProcessVol = Depends(get_process_vol), repo: IProcessRepo = Depends(get_process_repo)) -> ProcessListService:
+def get_process_service(processes: IProcessVol = Depends(inject_process_vol), repo: IProcessRepo = Depends(inject_process_repo)) -> ProcessListService:
     return ProcessListService(
         processes,
         repo

@@ -1,32 +1,33 @@
 import subprocess
+import os
 from src.memoryHandling.app.ports.volatility.i_process_vol import IProcessVol
 from src.memoryHandling.infrastructure.parser.process_parser import *
 
 
 class ImpProcesses(IProcessVol):
-    def __init__(self):
-        self.parser = ProcessListParser()
-
-
-    def run_volatility(self, file_path: str, plugin: str, file_name: str) -> str:
+    @staticmethod
+    def run_volatility(file_path: str, plugin: str, file_name: str) -> str:
         result = subprocess.run(
             ["vol", "-f", file_path, plugin],
             capture_output=True,
             text=True
         )
-        output_path = "resources/" + file_name
-        with open("resources/"+file_name, "w", encoding="utf-8") as f:
+        output_dir = "resources"
+        # Create folder if it doesn't exist
+        os.makedirs(output_dir, exist_ok=True)
+        output_path = os.path.join(output_dir, file_name)
+        with open(output_path, "w", encoding="utf-8") as f:
             f.write(result.stdout)
         return output_path
 
 
     def extract_process_list(self, file_path: str) -> list[dict]:
-        output_file = self.run_volatility(
+        output_file = ImpProcesses.run_volatility(
             file_path,
             "windows.pslist",
             "process_list.txt"
         )
-        parsed = self.parser.parse_pslist(output_file)
+        parsed = ProcessListParser.parse_process_list(output_file)
         return parsed
 
 
@@ -36,7 +37,7 @@ class ImpProcesses(IProcessVol):
             "windows.pstree",
             "process_tree.txt"
         )
-        parsed = self.parser.parse_pslist(output_file)
+        parsed = ProcessListParser.parse_process_list(output_file)
         return parsed
 
 
@@ -46,7 +47,7 @@ class ImpProcesses(IProcessVol):
             "windows.psxview",
             "process_psxview.txt"
         )
-        parsed = self.parser.parse_pslist(output_file)
+        parsed = ProcessListParser.parse_process_list(output_file)
         return parsed
 
 
@@ -56,7 +57,7 @@ class ImpProcesses(IProcessVol):
             "windows.cmdline",
             "process_cmdline.txt"
         )
-        parsed = self.parser.parse_pslist(output_file)
+        parsed = ProcessListParser.parse_process_list(output_file)
         return parsed
 
 
@@ -66,5 +67,5 @@ class ImpProcesses(IProcessVol):
             "windows.envars",
             "process_envars.txt"
         )
-        parsed = self.parser.parse_pslist(output_file)
+        parsed = ProcessListParser.parse_process_list(output_file)
         return parsed
