@@ -1,9 +1,9 @@
 import re
 from src.memoryHandling.infrastructure.mappers.process_mapper_vol_dict import *
 
-class ProcessListParser:
+class ProcessParser:
     @staticmethod
-    def parse_process_list(file_path: str) -> list[dict]:
+    def process_parse(file_path: str) -> list[dict]:
         with open(file_path, "r", encoding="utf-8") as f:
             lines = [l.strip() for l in f.readlines() if l.strip()]
 
@@ -24,6 +24,6 @@ class ProcessListParser:
             if len(values) != len(headers):
                 continue
             row = dict(zip(headers, values))
-            mapped_row = ProcessListMapperToDict.vol_to_dict(row)
-            data.append(mapped_row)
+            #mapped_row = ProcessListMapperToDict.vol_to_dict(row)
+            data.append(row)
         return data

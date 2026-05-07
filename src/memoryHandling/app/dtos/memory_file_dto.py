@@ -1,4 +1,6 @@
 from pydantic import BaseModel
 
-class MemoryFilePath(BaseModel):
-    file_path:str
+class MemoryFileDto(BaseModel):
+    file_path: str
+    project_id: str
+    source_type: str

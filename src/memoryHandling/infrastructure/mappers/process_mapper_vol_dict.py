@@ -22,7 +22,7 @@ class ProcessTreeMapperToDict:
         return {
             "pid": raw_data.get("PID"),
             "ppid": raw_data.get("PPID"),
-            "image_file_name": raw_data.get("ImageFileName"),
+            "image_file_name": raw_data.get("ImageFileName"), 
             "offset": raw_data.get("Offset(V)"),
             "threads": raw_data.get("Threads"),
             "handles": raw_data.get("Handles"),

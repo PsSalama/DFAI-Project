@@ -1,7 +1,8 @@
 import subprocess
 import os
 from src.memoryHandling.app.ports.volatility.i_process_vol import IProcessVol
-from src.memoryHandling.infrastructure.parser.process_parser import *
+from src.memoryHandling.infrastructure.parser.process_parser import ProcessParser
+from src.memoryHandling.infrastructure.mappers.process_mapper_vol_dict import *
 
 
 class ImpProcesses(IProcessVol):
@@ -27,8 +28,12 @@ class ImpProcesses(IProcessVol):
             "windows.pslist",
             "process_list.txt"
         )
-        parsed = ProcessListParser.parse_process_list(output_file)
-        return parsed
+        data_parsed = ProcessParser.process_parse(output_file)
+        data_mapped = [
+            ProcessListMapperToDict.vol_to_dict(process)
+            for process in data_parsed
+        ]
+        return data_mapped
 
 
     def extract_process_tree(self, file_path: str) -> list[dict]:
@@ -37,8 +42,12 @@ class ImpProcesses(IProcessVol):
             "windows.pstree",
             "process_tree.txt"
         )
-        parsed = ProcessListParser.parse_process_list(output_file)
-        return parsed
+        data_parsed = ProcessParser.process_parse(output_file)
+        data_mapped = [
+            ProcessTreeMapperToDict.vol_to_dict(process)
+            for process in data_parsed
+        ]
+        return data_mapped
 
 
     def extract_process_hidden(self, file_path: str) -> list[dict]:
@@ -47,8 +56,12 @@ class ImpProcesses(IProcessVol):
             "windows.psxview",
             "process_psxview.txt"
         )
-        parsed = ProcessListParser.parse_process_list(output_file)
-        return parsed
+        data_parsed = ProcessParser.process_parse(output_file)
+        data_mapped = [
+            ProcessHiddenMapperToDict.vol_to_dict(process)
+            for process in data_parsed
+        ]
+        return data_mapped
 
 
     def extract_process_command_line_args(self, file_path: str) -> list[dict]:
@@ -57,8 +70,12 @@ class ImpProcesses(IProcessVol):
             "windows.cmdline",
             "process_cmdline.txt"
         )
-        parsed = ProcessListParser.parse_process_list(output_file)
-        return parsed
+        data_parsed = ProcessParser.process_parse(output_file)
+        data_mapped = [
+            ProcessCommandLineMapperToDict.vol_to_dict(process)
+            for process in data_parsed
+        ]
+        return data_mapped
 
 
     def extract_process_environment_vars(self, file_path: str) -> list[dict]:
@@ -67,5 +84,9 @@ class ImpProcesses(IProcessVol):
             "windows.envars",
             "process_envars.txt"
         )
-        parsed = ProcessListParser.parse_process_list(output_file)
-        return parsed
+        data_parsed = ProcessParser.process_parse(output_file)
+        data_mapped = [
+            ProcessListMapperToDict.vol_to_dict(process)
+            for process in data_parsed
+        ]
+        return data_mapped

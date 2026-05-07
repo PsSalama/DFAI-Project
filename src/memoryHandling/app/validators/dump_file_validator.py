@@ -11,13 +11,11 @@ class ValidationResult:
     sha256: str = ""
 
 class DumpFileValidator:
-    # Common memory dump extensions (expand as needed)
     ALLOWED_EXTENSIONS = {".vmem", ".mem", ".dmp", ".raw"}
 
     @staticmethod
     def _calculate_sha256(path: str) -> str:
         sha256_hash = hashlib.sha256()
-
         with open(path, "rb") as f:
             for chunk in iter(lambda: f.read(8192), b""):
                 sha256_hash.update(chunk)
