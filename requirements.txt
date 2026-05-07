@@ -4,3 +4,5 @@ volatility3
 pydantic
 python-dotenv # for using .env
 pydantic-settings
+celery
+redis
