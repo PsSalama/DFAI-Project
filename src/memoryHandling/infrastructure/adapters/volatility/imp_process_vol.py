@@ -1,7 +1,7 @@
 import subprocess
 import os
 from src.memoryHandling.app.ports.volatility.i_process_vol import IProcessVol
-from src.memoryHandling.infrastructure.parser.process_parser import ProcessParser
+from src.memoryHandling.infrastructure.parsers.process_parser import ProcessParser
 from src.memoryHandling.infrastructure.mappers.process_mapper_vol_dict import *
 
 
