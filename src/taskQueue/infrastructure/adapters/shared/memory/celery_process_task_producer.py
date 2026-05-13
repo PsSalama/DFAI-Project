@@ -1,5 +1,5 @@
-from src.memoryHandling.app.ports.taskQueue.i_task_producer import IProcessTaskProducer
-from src.taskQueue.infrastructure.config.celery_app import celery_app
+from ports.process.i_task_producer import IProcessTaskProducer
+from infrastructure.config.celery_app import celery_app
 from src.shared.dto.task_request import TaskRequest
 import logging
 

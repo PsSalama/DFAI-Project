@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 
+
 class IProcessRepo(ABC):
     @abstractmethod
     def store_process_list(self,project_id: str, source_type: str, process_list: list[dict]):

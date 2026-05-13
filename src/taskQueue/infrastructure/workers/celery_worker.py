@@ -9,10 +9,9 @@ sys.path.insert(0, str(project_root))
 print(f"✅ Project root: {project_root}")
 
 # Import Celery app
-from src.taskQueue.infrastructure.config.celery_app import celery_app
+from infrastructure.config.celery_app import celery_app
 
 # Import tasks to register them
-import src.taskQueue.infrastructure.tasks.process_tasks
 
 if __name__ == "__main__":
     print("\n🚀 Starting Celery Worker...")

@@ -1,5 +1,5 @@
 from celery.result import AsyncResult
-from src.taskQueue.infrastructure.config.celery_app import celery_app
+from infrastructure.config.celery_app import celery_app
 
 
 class TaskStatusService:
