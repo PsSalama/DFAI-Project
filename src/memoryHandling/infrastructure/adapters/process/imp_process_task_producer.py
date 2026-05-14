@@ -1,9 +1,9 @@
-from src.memoryHandling.app.ports.process.i_task_producer import IProcessTaskProducer
-from src.taskQueue.infrastructure.config.celery_app import celery_app
+from src.memoryHandling.app.ports.process.i_process_task_producer import IProcessTaskProducer
+from config.celery_app import celery_app
 from src.shared.dto.task_request import TaskRequest
 
 
-class CeleryProcessTaskProducer(IProcessTaskProducer):
+class ImpProcessTaskProducer(IProcessTaskProducer):
     async def process_list_task(self, task_request: TaskRequest) -> dict:
         # Send task to specific queue
         result = celery_app.send_task(

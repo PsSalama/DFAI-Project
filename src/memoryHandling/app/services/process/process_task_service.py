@@ -1,4 +1,4 @@
-from src.memoryHandling.app.ports.process.i_task_producer import IProcessTaskProducer
+from src.memoryHandling.app.ports.process.i_process_task_producer import IProcessTaskProducer
 from src.shared.dto.task_request import TaskRequest
 
 
@@ -8,7 +8,8 @@ class ProcessTaskService:
 
 
     async def process_tasks(self, file_path: str) -> dict:
-        await self.process_list_task(file_path)
+        payload = await self.process_list_task(file_path)
+        print(payload['parsed_data'])
         return {
             "request_status": "success"
         }

@@ -8,6 +8,10 @@ celery_app = Celery(
     "dfai_celery",
     broker=os.environ.get("CELERY_BROKER_URL"),
     backend=os.environ.get("CELERY_RESULT_BACKEND"),
+    include=[
+        "src.memoryHandling.infrastructure.consumer.process.process_tasks",
+        "src.memoryHandling.infrastructure.consumer.process.file_parsing"
+    ]
 )
 
 celery_app.conf.update(
@@ -24,6 +28,4 @@ celery_app.conf.update(
 )
 
 
-import src.taskQueue.infrastructure.tasks.process_tasks
-
-__all__ = ["celery_app"]
+# __all__ = ["celery_app"]
