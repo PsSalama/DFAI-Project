@@ -2,7 +2,7 @@ from src.memoryHandling.app.ports.process.i_task_producer import IProcessTaskPro
 from src.shared.dto.task_request import TaskRequest
 
 
-class ProcessService:
+class ProcessTaskService:
     def __init__(self, producer: IProcessTaskProducer):
         self.producer = producer
 

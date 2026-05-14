@@ -1,5 +1,5 @@
 from config.database import Database
-from ports.process.i_process_repo import IProcessRepo
+from src.memoryHandling.app.ports.process.i_process_repo import IProcessRepo
 from src.memoryHandling.infrastructure.mappers.process_mapper_dict_database import *
 
 

@@ -1,10 +1,11 @@
-from config.redis import redis_client
+from config.async_redis import async_redis_client
 import json
 
 
 class EventBus:
-    async def publish(self, channel: str, event: dict):
-        await redis_client.publish(
+    def publish(self, channel: str, event: dict):
+        async_redis_client.publish(
             channel,
             json.dumps(event)
         )
+        print(f"Published event to {channel}")

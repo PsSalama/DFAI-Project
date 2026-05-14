@@ -1,47 +1,51 @@
+# database.py
+import os
+from dotenv import load_dotenv
 from pymongo import MongoClient
-from config.config import settings
-from redis import asyncio as aioredis
+import redis.asyncio as aioredis
 
+load_dotenv()
 
 class Database:
     client: MongoClient = None
     db = None
 
     @classmethod
-    async def init_db(cls):
-        cls.client = MongoClient(settings.MONGO_URI)
-        cls.db = cls.client[settings.MONGO_DB_NAME]
-        print("✅ MongoDB connected ✔")
+    def init_db(cls):
+        mongo_uri = os.getenv("MONGO_URL")
+        mongo_db_name = os.getenv("MONGO_DB_NAME", "dfai_db")
+
+        if not mongo_uri:
+            raise ValueError("MONGO_URI not found in environment variables")
+
+        cls.client = MongoClient(mongo_uri)
+        cls.db = cls.client[mongo_db_name]
+        print(f"✅ MongoDB connected to: {mongo_db_name}")
 
     @classmethod
-    async def close_db(cls):
+    def close_db(cls):
         if cls.client:
             cls.client.close()
             print("❌ MongoDB connection closed.")
+
 
 class Redis:
     client = None
 
     @classmethod
-    async def init_redis(cls):
-        """Initialize Redis connection"""
-        try:
-            cls.client = aioredis.from_url(
-                settings.REDIS_URI,
-                decode_responses=True,   # Automatically decode bytes to str
-                socket_connect_timeout=5,
-                socket_timeout=5
-            )
-            # Test connection
-            await cls.client.ping()
-            print("✅ Redis connected ✔")
-        except Exception as e:
-            print(f"❌ Redis connection failed: {e}")
-            raise
+    def init_redis(cls):
+        redis_url = os.getenv("REDIS_URL", "redis://localhost:6379/2")
+
+        cls.client = aioredis.from_url(
+            redis_url,
+            decode_responses=True,
+            socket_connect_timeout=5,
+            socket_timeout=5
+        )
+        print(f"✅ Redis connected to: {redis_url}")
 
     @classmethod
-    async def close_redis(cls):
-        """Close Redis connection"""
+    def close_redis(cls):
         if cls.client:
-            await cls.client.close()
+            cls.client.close()  # Note: This needs to be async
             print("❌ Redis connection closed.")

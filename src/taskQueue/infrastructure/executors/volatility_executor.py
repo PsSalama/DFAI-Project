@@ -1,8 +1,8 @@
 import subprocess
 import os
 
-OUTPUT_DIR = "resources"
 
+OUTPUT_DIR = "resources"
 
 def run_volatility(file_path: str, plugin: str, output_file: str) -> str:
     os.makedirs(OUTPUT_DIR, exist_ok=True)
