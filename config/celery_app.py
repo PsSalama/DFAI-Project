@@ -9,8 +9,7 @@ celery_app = Celery(
     broker=os.environ.get("CELERY_BROKER_URL"),
     backend=os.environ.get("CELERY_RESULT_BACKEND"),
     include=[
-        "src.memoryHandling.infrastructure.consumer.process.process_tasks",
-        "src.memoryHandling.infrastructure.consumer.process.file_parsing"
+        "src.memoryHandling.infrastructure.consumer.process.process_tasks"
     ]
 )
 

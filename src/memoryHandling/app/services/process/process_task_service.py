@@ -8,8 +8,7 @@ class ProcessTaskService:
 
 
     async def process_tasks(self, file_path: str) -> dict:
-        payload = await self.process_list_task(file_path)
-        print(payload['parsed_data'])
+        await self.process_list_task(file_path)
         return {
             "request_status": "success"
         }

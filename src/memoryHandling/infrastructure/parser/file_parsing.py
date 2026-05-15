@@ -3,7 +3,6 @@ import re
 from src.memoryHandling.infrastructure.mappers.process_mapper_vol_dict import ProcessListMapperToDict
 
 
-@celery_app.task(name="parse_artifacts_task")
 def parse_artifacts_task(file_path: str) -> list[dict]:
     with open(file_path, "r", encoding="utf-8") as f:
         lines = [l.strip() for l in f.readlines() if l.strip()]
