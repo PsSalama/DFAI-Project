@@ -7,4 +7,4 @@ class ProcessStoreService:
 
 
     def store(self, parsed_data: list[dict]):
-        self.repo.store_process_list("123455","memory", parsed_data)
+        self.repo.store_process_xview(parsed_data)

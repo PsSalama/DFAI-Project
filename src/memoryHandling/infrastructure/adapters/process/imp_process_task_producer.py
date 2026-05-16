@@ -1,6 +1,6 @@
 from src.memoryHandling.app.ports.process.i_process_task_producer import IProcessTaskProducer
 from config.celery_app import celery_app
-from src.shared.dto.task_request import TaskRequest
+from src.memoryHandling.app.dto.task_request import TaskRequest
 
 
 class ImpProcessTaskProducer(IProcessTaskProducer):

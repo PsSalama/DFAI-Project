@@ -1,6 +1,9 @@
 import os
 from celery import Celery
 from dotenv import load_dotenv
+from celery.signals import worker_process_init
+from config.database import Database
+
 
 load_dotenv()
 
@@ -9,9 +12,16 @@ celery_app = Celery(
     broker=os.environ.get("CELERY_BROKER_URL"),
     backend=os.environ.get("CELERY_RESULT_BACKEND"),
     include=[
-        "src.memoryHandling.infrastructure.consumer.process.process_tasks"
+        "src.memoryHandling.infrastructure.consumer.process_tasks",
+        "src.memoryHandling.infrastructure.consumer.registry_tasks",
     ]
 )
+
+# for initialize database connection inside celery worker.
+@worker_process_init.connect
+def init_worker(**kwargs):
+    Database.init_db()
+
 
 celery_app.conf.update(
     task_serializer="json",
@@ -20,8 +30,8 @@ celery_app.conf.update(
     timezone="UTC",
     enable_utc=True,
     task_track_started=True,
-    task_time_limit=os.environ.get("CELERY_TASK_TIME_LIMIT"),
-    task_soft_time_limit=os.environ.get("CELERY_TASK_Soft_TIME_LIMIT"),
+    task_time_limit=os.environ.get("CELERY_TASK_TIME_LIMIT", 300),
+    task_soft_time_limit=os.environ.get("CELERY_TASK_Soft_TIME_LIMIT", 240),
     task_acks_late=os.environ.get("CELERY_ACKS_LATE"),
     worker_prefetch_multiplier=1,
 )

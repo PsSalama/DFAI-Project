@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from src.shared.dto.task_request import TaskRequest
+from src.memoryHandling.app.dto.task_request import TaskRequest
 
 
 class IProcessTaskProducer(ABC):

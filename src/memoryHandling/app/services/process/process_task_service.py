@@ -1,5 +1,5 @@
 from src.memoryHandling.app.ports.process.i_process_task_producer import IProcessTaskProducer
-from src.shared.dto.task_request import TaskRequest
+from src.memoryHandling.app.dto.task_request import TaskRequest
 
 
 class ProcessTaskService:
@@ -19,7 +19,7 @@ class ProcessTaskService:
             task_name = "process_list_task",
             payload={
                 "file_path": file_path,
-                "plugin": "windows.pslist"
+                "plugin": "windows.psxview"
             }
         )
         return await self.producer.process_list_task(new_task)

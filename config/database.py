@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 from pymongo import MongoClient
 import redis.asyncio as aioredis
 
+
 load_dotenv()
 
 class Database:

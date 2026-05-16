@@ -54,3 +54,13 @@ class ProcessEnvironmentVarsModel(BaseModel):
     block: str
     variable: str
     value: str
+
+class ProcessXviewModel(BaseModel):
+    offset: str
+    name: str
+    pid: str
+    pslist: str
+    psscan: str
+    thrdscan: str
+    csrss: str
+    exit_time: str

@@ -1,21 +1,20 @@
 import subprocess
-import os
+import json
 
+def run_volatility(file_path: str, plugin: str) -> list[dict]:
+    command = ["vol", "-f", file_path, "-r", "json", plugin]
 
-OUTPUT_DIR = "resources"
-
-def run_volatility(file_path: str, plugin: str, output_file: str) -> str:
-    os.makedirs(OUTPUT_DIR, exist_ok=True)
     result = subprocess.run(
-        ["vol", "-f", file_path, plugin],
+        command,
         capture_output=True,
         text=True
     )
+
     if result.returncode != 0:
-        raise RuntimeError(
-            f"Volatility failed for {plugin}: {result.stderr}"
-        )
-    output_path = os.path.join(OUTPUT_DIR, output_file)
-    with open(output_path, "w", encoding="utf-8") as f:
-        f.write(result.stdout)
-    return output_path
+        raise RuntimeError(f"Volatility failed: {result.stderr}")
+
+    # Convert the raw JSON output string directly into a Python list of dicts
+    try:
+        return json.loads(result.stdout)
+    except json.JSONDecodeError as e:
+        raise RuntimeError(f"Failed to decode Volatility JSON output: {e}")
