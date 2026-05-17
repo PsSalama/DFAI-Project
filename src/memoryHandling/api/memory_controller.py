@@ -5,7 +5,8 @@ from src.memoryHandling.app.dto.memory_file_request import MemoryFileRequest
 from src.memoryHandling.app.validators.dump_file_validator import DumpFileValidator
 from src.memoryHandling.injector.injectors import (
     inject_process_task_service,
-    inject_registry_task_service
+    inject_registry_task_service,
+    inject_dll_task_service
 )
 
 
@@ -13,9 +14,10 @@ router = APIRouter()
 
 def inject_main_service(
     process_service = Depends(inject_process_task_service),
-    registry_service = Depends(inject_registry_task_service)
+    registry_service = Depends(inject_registry_task_service),
+    dll_service = Depends(inject_dll_task_service),
 ):
-    return MainService(process_service, registry_service)
+    return MainService(process_service, registry_service, dll_service)
 
 
 
