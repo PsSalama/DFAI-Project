@@ -25,7 +25,7 @@ class DllLdrmodulesMapperToDatabaseModel:
             in_load = str(raw_data.get("InLoad", "")),
             in_init = str(raw_data.get("InInit", "")),
             in_mem = str(raw_data.get("InMem", "")),
-            mapped_path = str(raw_data.get("MappedPath"))
+            mapped_path = str(raw_data.get("MappedPath", ""))
 
         ).model_dump()
 

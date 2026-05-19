@@ -6,7 +6,9 @@ from src.memoryHandling.app.validators.dump_file_validator import DumpFileValida
 from src.memoryHandling.injector.injectors import (
     inject_process_task_service,
     inject_registry_task_service,
-    inject_dll_task_service
+    inject_dll_task_service,
+    inject_activity_task_service,
+    inject_privilege_task_service
 )
 
 
@@ -16,8 +18,10 @@ def inject_main_service(
     process_service = Depends(inject_process_task_service),
     registry_service = Depends(inject_registry_task_service),
     dll_service = Depends(inject_dll_task_service),
+    activity_service = Depends(inject_activity_task_service),
+    privilege_service = Depends(inject_privilege_task_service)
 ):
-    return MainService(process_service, registry_service, dll_service)
+    return MainService(process_service, registry_service, dll_service, activity_service, privilege_service)
 
 
 

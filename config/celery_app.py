@@ -14,7 +14,9 @@ celery_app = Celery(
     include=[
         "src.memoryHandling.infrastructure.consumer.process_tasks",
         "src.memoryHandling.infrastructure.consumer.registry_tasks",
-        "src.memoryHandling.infrastructure.consumer.dll_tasks"
+        "src.memoryHandling.infrastructure.consumer.dll_tasks",
+        "src.memoryHandling.infrastructure.consumer.activity_tasks",
+        "src.memoryHandling.infrastructure.consumer.privilege_tasks",
     ]
 )
 

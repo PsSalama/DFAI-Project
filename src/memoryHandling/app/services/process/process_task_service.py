@@ -7,7 +7,7 @@ class ProcessTaskService:
         self.producer = producer
 
 
-    async def process_tasks(self, file_path: str) -> dict:
+    async def all_tasks(self, file_path: str) -> dict:
         await self.process_list_task(file_path)
         return {
             "request_status": "success"

@@ -8,7 +8,7 @@ class RegistryTaskService:
     def __init__(self, producer: IRegistryTaskProducer):
         self.producer = producer
 
-    async def registry_tasks(self, file_path: str) -> dict:
+    async def all_tasks(self, file_path: str):
         await asyncio.gather(
             self.registry_list_task(file_path),
             self.registry_scan_task(file_path),

@@ -8,15 +8,15 @@ class IDllRepo(ABC):
 
 
     @abstractmethod
-    def store_dll_ldrmodule(self, process_list: list[dict]):
+    def store_dll_ldrmodule(self, dll_ldrmodule: list[dict]):
         pass
 
 
     @abstractmethod
-    def store_dll_module(self, dll_list: list[dict]):
+    def store_dll_module(self, dll_module: list[dict]):
         pass
 
 
     @abstractmethod
-    def store_dll_modscan(self, process_list: list[dict]):
+    def store_dll_modscan(self, dll_modscan: list[dict]):
         pass
