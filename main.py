@@ -1,7 +1,7 @@
 from config.database import Database
 from config.database import Redis
 from fastapi import FastAPI
-from src.memoryHandling.api.memory_controller import router as task_memory_router
+from src.memoryHandling.internal.api.memory_controller import router as task_memory_router
 from src.projectHandling.api.project_controller import router as project_router
 
 app = FastAPI()

@@ -12,11 +12,15 @@ celery_app = Celery(
     broker=os.environ.get("CELERY_BROKER_URL"),
     backend=os.environ.get("CELERY_RESULT_BACKEND"),
     include=[
-        "src.memoryHandling.infrastructure.consumer.process_tasks",
-        "src.memoryHandling.infrastructure.consumer.registry_tasks",
-        "src.memoryHandling.infrastructure.consumer.dll_tasks",
-        "src.memoryHandling.infrastructure.consumer.activity_tasks",
-        "src.memoryHandling.infrastructure.consumer.privilege_tasks",
+        "src.memoryHandling.internal.infrastructure.consumer.process_tasks",
+        "src.memoryHandling.internal.infrastructure.consumer.registry_tasks",
+        "src.memoryHandling.internal.infrastructure.consumer.dll_tasks",
+        "src.memoryHandling.internal.infrastructure.consumer.activity_tasks",
+        "src.memoryHandling.internal.infrastructure.consumer.privilege_tasks",
+        "src.memoryHandling.internal.infrastructure.consumer.file_tasks",
+        "src.memoryHandling.internal.infrastructure.consumer.service_tasks",
+        "src.memoryHandling.internal.infrastructure.consumer.driver_tasks",
+        "src.memoryHandling.internal.infrastructure.consumer.memory_tasks"
     ]
 )
 
