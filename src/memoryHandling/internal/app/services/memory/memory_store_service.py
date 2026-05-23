@@ -6,5 +6,5 @@ class MemoryStoreService:
         self.repo = repo
 
 
-    def store_memory_info(self, parsed_data: list[dict]):
+    def store_memory_info(self, parsed_data: dict):
         self.repo.store_memory_info(parsed_data)

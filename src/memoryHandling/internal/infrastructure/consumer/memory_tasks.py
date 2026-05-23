@@ -1,6 +1,6 @@
 from config.celery_app import celery_app
 from src.memoryHandling.internal.infrastructure.adapters.memory.imp_memory_repo import ImpMemoryRepo
-from src.memoryHandling.internal.infrastructure.services.volatility_tool import run_volatility
+from src.memoryHandling.internal.infrastructure.services.volatility_tool_one import run_volatility
 from src.memoryHandling.internal.app.services.memory.memory_store_service import MemoryStoreService
 
 

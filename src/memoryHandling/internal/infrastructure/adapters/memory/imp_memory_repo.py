@@ -4,6 +4,6 @@ from src.memoryHandling.internal.infrastructure.mappers.memory_dict_to_database 
 
 
 class ImpMemoryRepo(IMemoryRepo):
-    def store_memory_info(self, memory_info: list[dict]):
-        documents = [ MemoryInfoMapperToDatabaseModel.dict_to_database(p) for p in memory_info ]
-        Database.db["memory"].insert_many(documents)
+    def store_memory_info(self, memory_info: dict):
+        document = MemoryInfoMapperToDatabaseModel.dict_to_database(memory_info)
+        Database.db["memory"].insert_one(document)
