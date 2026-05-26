@@ -52,6 +52,12 @@ from src.memoryHandling.internal.infrastructure.adapters.memory.imp_memory_task_
 from src.memoryHandling.internal.app.ports.memory.i_memory_repo import IMemoryRepo
 from src.memoryHandling.internal.infrastructure.adapters.memory.imp_memory_repo import ImpMemoryRepo
 
+from src.memoryHandling.internal.app.ports.network.i_network_task_producer import INetworkTaskProducer
+from src.memoryHandling.internal.infrastructure.adapters.network.imp_network_task_producer import ImpNetworkTaskProducer
+
+from src.memoryHandling.internal.app.ports.network.i_network_repo import INetworkRepo
+from src.memoryHandling.internal.infrastructure.adapters.network.imp_network_repo import ImpNetworkRepo
+
 from src.memoryHandling.internal.app.services.process.process_task_service import ProcessTaskService
 from src.memoryHandling.internal.app.services.registry.registry_task_service import RegistryTaskService
 from src.memoryHandling.internal.app.services.dll.dll_task_service import DllTaskService
@@ -61,6 +67,7 @@ from src.memoryHandling.internal.app.services.file.file_task_service import File
 from src.memoryHandling.internal.app.services.service.service_task_service import ServiceTaskService
 from src.memoryHandling.internal.app.services.driver.driver_task_service import DriverTaskService
 from src.memoryHandling.internal.app.services.memory.memory_task_service import MemoryTaskService
+from src.memoryHandling.internal.app.services.network.network_task_service import NetworkTaskService
 
 
 # ====================== Services ==============================
@@ -165,3 +172,14 @@ def inject_memory_repo() -> IMemoryRepo:
 def inject_memory_task_service() -> MemoryTaskService:
     producer = inject_memory_task_producer()
     return MemoryTaskService(producer)
+
+# ====================== Network ==============================
+def inject_network_task_producer() -> INetworkTaskProducer:
+    return ImpNetworkTaskProducer()
+
+def inject_network_repo() -> INetworkRepo:
+    return ImpNetworkRepo()
+
+def inject_network_task_service() -> NetworkTaskService:
+    producer = inject_network_task_producer()
+    return NetworkTaskService(producer)

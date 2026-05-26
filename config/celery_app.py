@@ -20,7 +20,8 @@ celery_app = Celery(
         "src.memoryHandling.internal.infrastructure.consumer.file_tasks",
         "src.memoryHandling.internal.infrastructure.consumer.service_tasks",
         "src.memoryHandling.internal.infrastructure.consumer.driver_tasks",
-        "src.memoryHandling.internal.infrastructure.consumer.memory_tasks"
+        "src.memoryHandling.internal.infrastructure.consumer.memory_tasks",
+        "src.memoryHandling.internal.infrastructure.consumer.network_tasks"
     ]
 )
 
