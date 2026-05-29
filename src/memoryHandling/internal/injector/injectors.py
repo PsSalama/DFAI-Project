@@ -58,6 +58,12 @@ from src.memoryHandling.internal.infrastructure.adapters.network.imp_network_tas
 from src.memoryHandling.internal.app.ports.network.i_network_repo import INetworkRepo
 from src.memoryHandling.internal.infrastructure.adapters.network.imp_network_repo import ImpNetworkRepo
 
+from src.memoryHandling.internal.app.ports.console.i_console_task_producer import IConsoleTaskProducer
+from src.memoryHandling.internal.infrastructure.adapters.console.imp_console_task_producer import ImpConsoleTaskProducer
+
+from src.memoryHandling.internal.app.ports.console.i_console_repo import IConsoleRepo
+from src.memoryHandling.internal.infrastructure.adapters.console.imp_console_repo import ImpConsoleRepo
+
 from src.memoryHandling.internal.app.services.process.process_task_service import ProcessTaskService
 from src.memoryHandling.internal.app.services.registry.registry_task_service import RegistryTaskService
 from src.memoryHandling.internal.app.services.dll.dll_task_service import DllTaskService
@@ -68,6 +74,7 @@ from src.memoryHandling.internal.app.services.service.service_task_service impor
 from src.memoryHandling.internal.app.services.driver.driver_task_service import DriverTaskService
 from src.memoryHandling.internal.app.services.memory.memory_task_service import MemoryTaskService
 from src.memoryHandling.internal.app.services.network.network_task_service import NetworkTaskService
+from src.memoryHandling.internal.app.services.console.console_task_service import ConsoleTaskService
 
 
 # ====================== Services ==============================
@@ -183,3 +190,14 @@ def inject_network_repo() -> INetworkRepo:
 def inject_network_task_service() -> NetworkTaskService:
     producer = inject_network_task_producer()
     return NetworkTaskService(producer)
+
+# ====================== Console ==============================
+def inject_console_task_producer() -> IConsoleTaskProducer:
+    return ImpConsoleTaskProducer()
+
+def inject_console_repo() -> IConsoleRepo:
+    return ImpConsoleRepo()
+
+def inject_console_task_service() -> ConsoleTaskService:
+    producer = inject_console_task_producer()
+    return ConsoleTaskService(producer)

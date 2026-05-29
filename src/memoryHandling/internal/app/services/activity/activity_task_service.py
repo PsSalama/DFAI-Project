@@ -7,7 +7,7 @@ class ActivityTaskService:
         self.producer = producer
 
 
-    async def dll_tasks(self, file_path: str) -> dict:
+    async def all_tasks(self, file_path: str) -> dict:
         await self.activity_session_task(file_path)
         await self.activity_sid_task(file_path)
         await self.activity_desktop_task(file_path)

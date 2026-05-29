@@ -7,7 +7,7 @@ class DllTaskService:
         self.producer = producer
 
 
-    async def dll_tasks(self, file_path: str) -> dict:
+    async def all_tasks(self, file_path: str) -> dict:
         await self.dll_list_task(file_path)
         await self.dll_ldrmodules_task(file_path)
         await self.dll_module_task(file_path)
