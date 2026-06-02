@@ -5,10 +5,14 @@ from src.memoryHandling.internal.infrastructure.mappers.file_dict_to_database im
 
 class ImpFileRepo(IFileRepo):
     def store_file_scan(self, file_scan: list[dict]):
+        if not file_scan:
+            return
         documents = [ FileScanMapperToDatabaseModel.dict_to_database(p) for p in file_scan ]
         Database.db["files"].insert_many(documents)
 
 
     def store_file_dump(self, file_dump: list[dict]):
+        if not file_dump:
+            return
         documents = [ FileDumpMapperToDatabaseModel.dict_to_database(p) for p in file_dump ]
         Database.db["files"].insert_many(documents)
