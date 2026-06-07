@@ -64,6 +64,9 @@ from src.memoryHandling.internal.infrastructure.adapters.console.imp_console_tas
 from src.memoryHandling.internal.app.ports.console.i_console_repo import IConsoleRepo
 from src.memoryHandling.internal.infrastructure.adapters.console.imp_console_repo import ImpConsoleRepo
 
+from src.memoryHandling.internal.app.ports.i_project_repo import IProjectRepo
+from src.memoryHandling.internal.infrastructure.adapters.imp_project_repo import ImpProjectRepo
+
 from src.memoryHandling.internal.app.services.process.process_task_service import ProcessTaskService
 from src.memoryHandling.internal.app.services.registry.registry_task_service import RegistryTaskService
 from src.memoryHandling.internal.app.services.dll.dll_task_service import DllTaskService
@@ -75,6 +78,7 @@ from src.memoryHandling.internal.app.services.driver.driver_task_service import 
 from src.memoryHandling.internal.app.services.memory.memory_task_service import MemoryTaskService
 from src.memoryHandling.internal.app.services.network.network_task_service import NetworkTaskService
 from src.memoryHandling.internal.app.services.console.console_task_service import ConsoleTaskService
+from src.memoryHandling.internal.app.services.project_service import ProjectService
 
 
 # ====================== Services ==============================
@@ -201,3 +205,11 @@ def inject_console_repo() -> IConsoleRepo:
 def inject_console_task_service() -> ConsoleTaskService:
     producer = inject_console_task_producer()
     return ConsoleTaskService(producer)
+
+# ====================== Project ==============================
+def inject_project_repo() -> IProjectRepo:
+    return ImpProjectRepo()
+
+def inject_project_service() -> ProjectService:
+    repo = inject_project_repo()
+    return ProjectService(repo)
