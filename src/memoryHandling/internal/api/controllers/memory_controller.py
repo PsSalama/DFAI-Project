@@ -48,8 +48,7 @@ def inject_main_service(
     )
 
 
-
-@router.post("/memory/file")
+@router.post("/memory/path")
 async def memory_file(
     memory_file_request: MemoryFileRequest,
     main_service: MainService = Depends(inject_main_service)

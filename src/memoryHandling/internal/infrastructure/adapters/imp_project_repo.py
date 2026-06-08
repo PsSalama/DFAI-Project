@@ -19,3 +19,6 @@ class ImpProjectRepo(IProjectRepo):
 
         # Clear result backend
         redis.Redis(host="localhost", port=6379, db=1).flushdb()
+
+        # Clear result backend
+        redis.Redis(host="localhost", port=6379, db=2).flushdb()

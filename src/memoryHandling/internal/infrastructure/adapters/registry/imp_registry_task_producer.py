@@ -1,9 +1,15 @@
 from src.memoryHandling.internal.app.ports.registry.i_registry_task_producer import IRegistryTaskProducer
 from config.celery_app import celery_app
+from config.redis_progress import redis_client
 from src.memoryHandling.internal.app.dto.task_request import TaskRequest
 
 
 class ImpRegistryTaskProducer(IRegistryTaskProducer):
+    def __init__(self):
+        redis_client.hincrby("workflow:progress", "all_tasks", 4)
+        redis_client.hincrby("workflow:progress", "pending_tasks", 4)
+
+
     async def registry_list_task(self, task_request: TaskRequest) -> dict:
         # Send task to specific queue
         result = celery_app.send_task(

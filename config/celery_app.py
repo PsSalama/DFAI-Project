@@ -3,6 +3,7 @@ from celery import Celery
 from dotenv import load_dotenv
 from celery.signals import worker_process_init
 from config.database import Database
+import config.celery_signals
 
 
 load_dotenv()
