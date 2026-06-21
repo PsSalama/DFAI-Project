@@ -3,11 +3,11 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from config.database import Database
 from config.database import Redis
-from src.memoryHandling.internal.api.controllers.memory_controller import router as memory_router
-from src.memoryHandling.internal.api.controllers.project_controller import router as project_router
-from src.memoryHandling.internal.api.websockets.stats_ws import router as stats_ws_router
-from src.memoryHandling.internal.infrastructure.pubSub.subscriber import Subscriber
-from src.memoryHandling.internal.infrastructure.pubSub.progress_listener import progress_listener
+from src.memoryEngine.internal.api.controllers.memory_controller import router as memory_router
+from src.memoryEngine.internal.api.controllers.project_controller import router as project_router
+from src.memoryEngine.internal.api.websockets.stats_ws import router as stats_ws_router
+from src.memoryEngine.internal.infrastructure.pubSub.subscriber import Subscriber
+from src.memoryEngine.internal.infrastructure.pubSub.progress_listener import progress_listener
 
 
 subscriber = Subscriber()

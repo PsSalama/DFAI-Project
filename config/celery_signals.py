@@ -1,6 +1,6 @@
 from celery.signals import task_postrun
 from config.redis_progress import redis_client
-from src.memoryHandling.internal.infrastructure.pubSub.publisher import Publisher
+from src.memoryEngine.internal.infrastructure.pubSub.publisher import Publisher
 
 
 @task_postrun.connect
