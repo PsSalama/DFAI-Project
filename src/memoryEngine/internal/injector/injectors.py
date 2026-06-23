@@ -67,6 +67,12 @@ from src.memoryEngine.internal.infrastructure.adapters.console.imp_console_repo 
 from src.memoryEngine.internal.app.ports.i_project_repo import IProjectRepo
 from src.memoryEngine.internal.infrastructure.adapters.imp_project_repo import ImpProjectRepo
 
+from src.memoryEngine.internal.app.ports.handle.i_handle_task_producer import IHandleTaskProducer
+from src.memoryEngine.internal.infrastructure.adapters.handle.imp_handle_task_producer import ImpHandleTaskProducer
+
+from src.memoryEngine.internal.app.ports.handle.i_handle_repo import IHandleRepo
+from src.memoryEngine.internal.infrastructure.adapters.handle.imp_handle_repo import ImpHandleRepo
+
 from src.memoryEngine.internal.app.services.process.process_task_service import ProcessTaskService
 from src.memoryEngine.internal.app.services.registry.registry_task_service import RegistryTaskService
 from src.memoryEngine.internal.app.services.dll.dll_task_service import DllTaskService
@@ -79,6 +85,7 @@ from src.memoryEngine.internal.app.services.memory.memory_task_service import Me
 from src.memoryEngine.internal.app.services.network.network_task_service import NetworkTaskService
 from src.memoryEngine.internal.app.services.console.console_task_service import ConsoleTaskService
 from src.memoryEngine.internal.app.services.project_service import ProjectService
+from src.memoryEngine.internal.app.services.handle.handle_task_service import HandleTaskService
 
 
 # ====================== Services ==============================
@@ -213,3 +220,14 @@ def inject_project_repo() -> IProjectRepo:
 def inject_project_service() -> ProjectService:
     repo = inject_project_repo()
     return ProjectService(repo)
+
+# ====================== Handle ==============================
+def inject_handle_task_producer() -> IHandleTaskProducer:
+    return ImpHandleTaskProducer()
+
+def inject_handle_repo() -> IHandleRepo:
+    return ImpHandleRepo()
+
+def inject_handle_task_service() -> HandleTaskService:
+    producer = inject_handle_task_producer()
+    return HandleTaskService(producer)

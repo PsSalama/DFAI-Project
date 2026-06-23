@@ -9,6 +9,7 @@ from src.memoryEngine.internal.app.services.driver.driver_task_service import Dr
 from src.memoryEngine.internal.app.services.memory.memory_task_service import MemoryTaskService
 from src.memoryEngine.internal.app.services.network.network_task_service import NetworkTaskService
 from src.memoryEngine.internal.app.services.console.console_task_service import ConsoleTaskService
+from src.memoryEngine.internal.app.services.handle.handle_task_service import HandleTaskService
 
 
 class MainService:
@@ -25,6 +26,7 @@ class MainService:
             memory_task_service: MemoryTaskService,
             network_task_service: NetworkTaskService,
             console_task_service: ConsoleTaskService,
+            handle_task_service: HandleTaskService,
     ):
         self.process_task_service = process_task_service
         self.registry_task_service = registry_task_service
@@ -37,6 +39,7 @@ class MainService:
         self.memory_task_service = memory_task_service
         self.network_task_service = network_task_service
         self.console_task_service = console_task_service
+        self.handle_task_service = handle_task_service
 
 
     async def main_tasks(self, file_path: str) -> dict:
@@ -51,6 +54,7 @@ class MainService:
         await self.memory_task_service.all_tasks(file_path)
         await self.network_task_service.all_tasks(file_path)
         await self.console_task_service.all_tasks(file_path)
+        await self.handle_task_service.all_tasks(file_path)
         return {
             "status": "success",
             "message": "All tasks dispatched successfully"

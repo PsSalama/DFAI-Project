@@ -8,9 +8,10 @@ class ServiceTaskService:
         self.producer = producer
 
     async def all_tasks(self, file_path: str):
-        await asyncio.gather(
-            self.service_scan_task(file_path),
-        )
+        # await asyncio.gather(
+        #     self.service_scan_task(file_path),
+        # )
+        await self.service_scan_task(file_path)
 
 
     async def service_scan_task(self, file_path: str) -> dict:

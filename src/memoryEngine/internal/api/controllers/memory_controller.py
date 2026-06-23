@@ -14,7 +14,8 @@ from src.memoryEngine.internal.injector.injectors import (
     inject_driver_task_service,
     inject_memory_task_service,
     inject_network_task_service,
-    inject_console_task_service
+    inject_console_task_service,
+    inject_handle_task_service
 )
 
 
@@ -31,7 +32,8 @@ def inject_main_service(
     driver_service = Depends(inject_driver_task_service),
     memory_service = Depends(inject_memory_task_service),
     network_service = Depends(inject_network_task_service),
-    console_service = Depends(inject_console_task_service)
+    console_service = Depends(inject_console_task_service),
+    handle_service = Depends(inject_handle_task_service)
 ):
     return MainService(
         process_service,
@@ -44,7 +46,8 @@ def inject_main_service(
         driver_service,
         memory_service,
         network_service,
-        console_service
+        console_service,
+        handle_service
     )
 
 
