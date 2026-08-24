@@ -73,6 +73,12 @@ from src.memoryEngine.internal.infrastructure.adapters.handle.imp_handle_task_pr
 from src.memoryEngine.internal.app.ports.handle.i_handle_repo import IHandleRepo
 from src.memoryEngine.internal.infrastructure.adapters.handle.imp_handle_repo import ImpHandleRepo
 
+from src.memoryEngine.internal.app.ports.kernal.i_kernal_task_producer import IKernalTaskProducer
+from src.memoryEngine.internal.infrastructure.adapters.kernal.imp_kernal_task_producer import ImpKernalTaskProducer
+
+from src.memoryEngine.internal.app.ports.kernal.i_kernal_repo import IKernalRepo
+from src.memoryEngine.internal.infrastructure.adapters.kernal.imp_kernal_repo import ImpKernalRepo
+
 from src.memoryEngine.internal.app.services.process.process_task_service import ProcessTaskService
 from src.memoryEngine.internal.app.services.registry.registry_task_service import RegistryTaskService
 from src.memoryEngine.internal.app.services.dll.dll_task_service import DllTaskService
@@ -86,6 +92,7 @@ from src.memoryEngine.internal.app.services.network.network_task_service import 
 from src.memoryEngine.internal.app.services.console.console_task_service import ConsoleTaskService
 from src.memoryEngine.internal.app.services.project_service import ProjectService
 from src.memoryEngine.internal.app.services.handle.handle_task_service import HandleTaskService
+from src.memoryEngine.internal.app.services.kernal.kernal_task_service import KernalTaskService
 
 
 # ====================== Services ==============================
@@ -231,3 +238,14 @@ def inject_handle_repo() -> IHandleRepo:
 def inject_handle_task_service() -> HandleTaskService:
     producer = inject_handle_task_producer()
     return HandleTaskService(producer)
+
+# ====================== Kernal ==============================
+def inject_kernal_task_producer() -> IKernalTaskProducer:
+    return ImpKernalTaskProducer()
+
+def inject_kernal_repo() -> IKernalRepo:
+    return ImpKernalRepo()
+
+def inject_kernal_task_service() -> KernalTaskService:
+    producer = inject_kernal_task_producer()
+    return KernalTaskService(producer)
