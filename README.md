@@ -28,22 +28,3 @@ The Memory Engine Component is built following a strict **Layered (3-Tier) Archi
 * **Forensic Engine:** Volatility 3
 * **Database:** MongoDB (`dfai_db`)
 * **Communication Protocols:** HTTP (REST) & WebSockets
-
-
-## 📁 Repository Structure
-
-```text
-memory_engine/
-├── app/
-│   ├── api/                  # Presentation Layer (FastAPI Routers & WebSockets)
-│   │   ├── endpoints/        # API route definitions
-│   │   └── websockets/       # WebSocket connections & state push logic
-│   ├── core/                 # Configurations, Redis, & MongoDB clients
-│   ├── services/             # Application Layer (Hash verification, Task Orchestrator)
-│   ├── tasks/                # Infrastructure Layer (Celery tasks & Volatility3 wrappers)
-│   └── models/               # Pydantic schemas & Data Transfer Objects (DTOs)
-├── tests/                    # Unit and integration tests
-├── Dockerfile                # Container definitions
-├── docker-compose.yml        # Service orchestration (FastAPI, Redis, Celery, MongoDB)
-├── requirements.txt          # Python dependencies
-└── README.md                 # Project documentation
