@@ -2,7 +2,6 @@
 
 The **Memory Engine Component** is the primary evidence ingestion, integrity verification, and memory forensic parsing engine for the **DFAI (Digital Forensics AI)** platform. It provides a non-blocking, asynchronous processing pipeline capable of ingesting volatile memory dumps, verifying evidence integrity via cryptographic hashing, running Volatility 3 plugins in parallel, and streaming real-time status updates back to the client interface.
 
----
 
 ## 🏗️ Architecture & Structural Design
 
@@ -12,7 +11,6 @@ The Memory Engine Component is built following a strict **Layered (3-Tier) Archi
 * **Application Layer (Business & Domain Logic):** Handles evidence file validation, computes SHA-256 integrity checks, decomposes extraction jobs into plugin-specific tasks, and aggregates real-time execution statistics.
 * **Infrastructure Layer (Redis, Celery, Volatility 3, MongoDB):** Executes Volatility 3 CLI commands via Celery background workers, uses Redis as a message broker and state cache, and persists structured JSON artifacts into the centralized MongoDB database (`dfai_db`).
 
----
 
 ## ⚡ Key Features
 
@@ -22,7 +20,6 @@ The Memory Engine Component is built following a strict **Layered (3-Tier) Archi
 * **Schema-less NoSQL Ingestion:** Stores structured forensic artifacts directly inside **13 dedicated collections** within `dfai_db`.
 * **Real-time Status Streaming:** Pushes job metrics (`total`, `pending`, `finished`, and `percentage completion`) directly to the UI via WebSockets.
 
----
 
 ## 🛠️ Technology Stack
 
@@ -32,7 +29,6 @@ The Memory Engine Component is built following a strict **Layered (3-Tier) Archi
 * **Database:** MongoDB (`dfai_db`)
 * **Communication Protocols:** HTTP (REST) & WebSockets
 
----
 
 ## 📁 Repository Structure
 
